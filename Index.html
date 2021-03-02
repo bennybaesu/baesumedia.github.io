@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Baesu Media</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- For dynamic screen capabilities -->
+
+        <link rel="stylesheet" type="text/css"  href="CSS/Style.css"> <!-- Main CSS Stylesheet -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For Social Media Logos -->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet"> <!-- For Montserrat Font -->
+        <link href="CSS/hamburgers.css" rel="stylesheet"> <!-- For "Hamburger" Menu Icon -->
+        <script src="JavaScript/Script.js"></script> <!-- Main JavaScript Script for buttons and more -->
+        <script src='https://www.google.com/recaptcha/api.js'></script> <!-- For CAPTCHA authentification -->
+    </head>
+
+    <body>
+        <nav>
+            <ul>
+                <li><a href = "https://hihello.me/p/f1c6d097-2c84-4d2f-bc9c-b4219ebacd05" target="_blank">Contact</a></li>
+                <li><a href="HTML/Gallery.html">Gallery</a></li>
+                <li id="home"><a href="Index.html" id="active">Home</a></li>
+            </ul>
+        </nav>
+
+        <!-- Original Dimensions: 4516 × 1521-->
+        <!-- TODO: Change this later to get the logo from a website instead of my file -->
+        <a id="logo" href="Index.html"><img src="Media/LOGO TRANSPARENCY.png" width="120"></a> <!-- Left Corner Logo -->
+
+        <!-- MENU BUTTON:-->
+        <button class="hamburger hamburger--slider" type="button" onclick="buttonFlip()">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+
+
+        <div id="wrapper">
+          <!-- BACKGROUND REEL -->
+          <video playsinline autoplay muted loop id="reel">
+            <source src="Media/Reel.mp4" type="video/mp4">
+          </video>
+
+          <!-- LOGO OVERLAY -->
+          <img class="overlay" width = "40%" src="Media/Transparent.png">
+          <!-- "GET QUOTE" BUTTON -->
+          <button class="quote" type="button" onclick="contactButton()" id="quoteButton">
+            <h1>Get a free quote</h1>
+          </button>
+        </div>
+
+        <!-- PHOTO BELOW THE REEL -->
+        <div id="wrapper">
+          <a href="HTML/Gallery.html"><img src="Media/107_Walnut-12.jpg" id="reel"></a>
+        </div>
+
+
+
+          <!-- CONTACT MENU-->
+          <div id="contact" class="contact">
+            <div class="contact-content">
+              <span class="close" onclick="contactButton()">&times;</span>
+
+              <h1>Contact Us</h1>
+              <form id="contactForm" action="">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" required><br>
+
+                <label for="email">Email</label>
+                <input type="text" id="email" name="email" placeholder="Email" required><br>
+
+                <label for="inquire_type">Inquiry Type</label>
+                <select id="inquire_type" name="inquire_type" >
+                  <option value="none">Select One</option>
+                  <option value="real_estate">Real Estate Photography/Videography</option>
+                  <option value="commercial">Commerical Photography/Videography</option>
+                  <option value="ariel">Ariel Photography/Videography</option>
+                  <option value="event">Event Photography/Videography</option>
+                  <option value="other">Other</option>
+                </select><br>
+
+                <label for="info">Give us more information</label>
+                <textarea id="info" name="info" rows="6" cols="40" required></textarea><br>
+
+                <div class="g-center">
+                  <div class="g-recaptcha" data-sitekey="6LcVqGUaAAAAACN0k4ZMx2zVA7-F0TJpj8iw49ZR"></div> <!-- The Google Captcha -->
+                </div><br>
+
+                <input type="submit" value="submit" name="submit" id="submit">
+              </form>
+            </div>
+          </div>
+
+          <!--Script to handle the form information-->
+          <!-- TODO: Find a way to put this script in a seperate JavaScript file to make things look more clean -->
+          <script src="https://smtpjs.com/v3/smtp.js"></script> <!-- Script for sending emails -->
+          <script>
+            const form = document.querySelectorAll('#contactForm');
+            const submitInput = form[0].querySelector('input[type="submit"]');
+
+            function getDataForm(e) {
+              e.preventDefault();
+
+              var formData = new FormData(form[0]);
+
+              var name = formData.get('name');
+              var email = formData.get('email');
+              var inquire = formData.get('inquire_type');
+              var info = formData.get('info');
+
+              sendEmail(name, email, inquire, info);
+            }
+
+            document.addEventListener('DOMContentLoaded', function(){
+              submitInput.addEventListener('click', getDataForm, false);
+            }, false);
+
+            function sendEmail(name_, email_, inquire_, info_) {
+              // Ensure the name exists
+              var x = document.forms["contactForm"]["name"].value;
+              if (x == "") {
+                alert("Name must be filled out");
+                return false;
+              }
+
+              // Ensure the email exists and is valid
+              x = document.forms["contactForm"]["email"].value;
+              if (x == "") {
+                alert("Email must be filled out");
+                return false;
+              }
+              // If the email address is not a valid one
+              if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-])+.+[a-zA-Z0-9-.]*$/.test(x))) {
+                alert("Email address is invalid");
+                return false;
+              }
+
+              // Ensure the information box is filled out
+              x = document.forms["contactForm"]["info"].value;
+              if (x.length < 5) {
+                alert("Please provide more information in your description");
+                return false;
+              }
+
+              Email.send({
+              Host: "smtp.gmail.com",
+              Username: "forms.baesu@gmail.com",
+              Password: "fydvi8-kajVax-pobzyf",
+              To: 'info@baesumedia.com',
+              From: "forms.baesu@gmail.com",
+              Subject: "Baesu Media Web Form",
+              Body: `Name: ${name_}
+              Email: ${email_}
+              Inquire Type: ${inquire_}
+              Details: ${info_}`,
+              })
+                .then(function (message) {
+                  // TODO: Change this to hide the previous screen and pop up a new screen that lets the user know it was successful
+                  alert("Your Inquiry Was Successfully Sent! Someone will respond via email shortly.")
+                });
+            }
+          </script>
+
+          <!--MOBILE MENU-->
+          <div class="mobileMenu" id="mobileMenu">
+            <ul>
+                <li><a href="Index.html" id="active">Home</a></li>
+                <li><a href="HTML/Gallery.html">Gallery</a></li>
+                <li><a href="https://hihello.me/p/f1c6d097-2c84-4d2f-bc9c-b4219ebacd05" target="_blank">Contact</a></li>
+            </ul>
+          </div>
+
+          <!-- FOOTER -->
+          <div class="footer">
+            <ul>
+              <!-- TODO: Route these all to proper social media sites -->
+              <li><a href="https://vimeo.com/user134810512" class="fa fa-vimeo" target="_blank"></a></li>
+              <li><a href="https://www.facebook.com/baesumedia" class="fa fa-facebook" target="_blank"></a></li>
+              <li><a href="https://g.page/r/CYrVeZ-qCXi6EAE" class="fa fa-google" target="_blank"></a></li>
+              <li><a href="https://www.yelp.com/biz/baesu-media-corona-2" class="fa fa-yelp" target="_blank"></a></li>
+              <li><a href="https://www.instagram.com/baesumedia/" class="fa fa-instagram" target="_blank"></a></li>
+              <li><a href="https://www.youtube.com/channel/UC5ZXbiuzjTOQ4zQOF4zgcRQ" class="fa fa-youtube" target="_blank"></a></li>
+              <li><a href="mailto: info@baesumedia.com" class="fa fa-envelope" target="_blank"></a></li>
+            </ul>
+          </div>
+
+          <br><br><br>
+
+    </body>
+</html>
