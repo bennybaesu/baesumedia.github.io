@@ -8,8 +8,13 @@
         <link rel="stylesheet" type="text/css"  href="CSS/Style.css"> <!-- Main CSS Stylesheet -->
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- For Social Media Logos -->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet"> <!-- For Montserrat Font -->
         <link href="CSS/hamburgers.css" rel="stylesheet"> <!-- For "Hamburger" Menu Icon -->
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet"> <!-- For Montserrat Font -->
+        <link rel="preconnect" href="https://fonts.gstatic.com"> <!-- For access to Roboto Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet"> <!-- For Roboto Font -->
+
+        
         <script src="JavaScript/Script.js"></script> <!-- Main JavaScript Script for buttons and more -->
         <script src="https://www.google.com/recaptcha/api.js" async defer></script> <!-- For CAPTCHA authentification -->
     </head>
@@ -145,6 +150,9 @@
                 alert("Please provide more information in your description");
                 return false;
               }
+
+              // Validate the catpcha
+              x = 
 
               Email.send({
               Host: "smtp.gmail.com",

@@ -251,7 +251,7 @@ form {
 .contact-content input, .contact-content select, .contact-content textarea {
   display: block;
   margin : 0 auto;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Roboto', sans-serif;
   border-radius: 0.5rem;
   border: 1px solid #32373c;
 }
@@ -259,9 +259,10 @@ form {
 .contact-content label {
   display: block;
   text-align: center;
-  font-weight: 600;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
   text-transform: lowercase;
-  color: #32373c;
+  color: #007cba;
 }
 
 #submit {
