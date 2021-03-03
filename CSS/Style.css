@@ -144,9 +144,10 @@ nav a {
 /***************************************/
 #wrapper {
   position: relative;
+
 }
 #reel {
-  width: 100%;
+  width: 100vw;
 }
 .overlay {
   position: absolute;
