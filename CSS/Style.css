@@ -212,7 +212,7 @@ form {
 /* Modal Content/Box */
 .contact-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 8% auto; /* 15% from the top and centered */
   padding: 15px;
   padding-top: 5px;
   border: 1px solid #fefefe;
@@ -290,6 +290,11 @@ form {
 
 .g-recaptcha {
   display: inline-block;
+  transform:scale(0.77);
+  -webkit-transform:scale(0.77);
+  transform-origin:0 0;
+  -webkit-transform-origin:0 0;
+  text-align: center;
 }
 
 .contact textarea {
