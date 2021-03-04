@@ -149,6 +149,7 @@ nav a {
 #reel {
   width: 100vw;
 }
+
 .overlay {
   position: absolute;
   width: 40%;
@@ -393,6 +394,7 @@ form {
     opacity: 100%;
     transition: 0.3s;
   }
+
 }
 
 @media (min-width: 550px) {
